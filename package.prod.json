@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "node scripts/setup-dependencies.js && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@ozdemircibaris/react-image-editor": "file:.yalc/@ozdemircibaris/react-image-editor",
+    "@ozdemircibaris/react-image-editor": "^1.0.8",
     "lucide-react": "^0.537.0",
     "next": "15.4.6",
     "react": "19.1.0",
