@@ -18,28 +18,6 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🏗️ Environment-Based Dependencies
-
-This project uses different dependency sources based on the environment:
-
-### Development (Local)
-
-- Uses `yalc` for local development
-- Package: `file:.yalc/@ozdemircibaris/react-image-editor`
-- Allows testing local changes to the image editor
-
-### Production
-
-- Uses the published NPM package
-- Package: `^1.0.8` (latest version)
-- Automatically configured during build process
-
-### How it works
-
-1. **Development**: Uses yalc for local testing
-2. **Production Build**: Automatically switches to NPM package via `scripts/setup-dependencies.js`
-3. **Deployment**: Uses the production package.json configuration
-
 ## 📁 Project Structure
 
 ```
@@ -49,11 +27,7 @@ react-image-editor-demo/
 │       ├── page.tsx          # Main demo page
 │       ├── layout.tsx        # Root layout
 │       └── globals.css       # Global styles
-├── scripts/
-│   └── setup-dependencies.js # Environment-based dependency setup
-├── package.json              # Development dependencies (yalc)
-├── package.prod.json         # Production dependencies (npm)
-└── .eslintignore            # ESLint ignore rules
+└── package.json              # Dependencies
 ```
 
 ## 🎨 Features
@@ -68,7 +42,6 @@ react-image-editor-demo/
 ## 🔧 Development
 
 ### Local Development
-
 ```bash
 # Install dependencies
 npm install
@@ -78,9 +51,8 @@ npm run dev
 ```
 
 ### Production Build
-
 ```bash
-# Build for production (automatically uses NPM package)
+# Build for production
 npm run build
 
 # Start production server
