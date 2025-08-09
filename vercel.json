@@ -1,0 +1,8 @@
+{
+  "buildCommand": "node scripts/setup-dependencies.js && npm install && next build",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
