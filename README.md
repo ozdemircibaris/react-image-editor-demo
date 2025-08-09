@@ -42,6 +42,7 @@ react-image-editor-demo/
 ## 🔧 Development
 
 ### Local Development
+
 ```bash
 # Install dependencies
 npm install
@@ -51,6 +52,7 @@ npm run dev
 ```
 
 ### Production Build
+
 ```bash
 # Build for production
 npm run build
