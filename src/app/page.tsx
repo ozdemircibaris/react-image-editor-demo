@@ -14,29 +14,13 @@ export default function Home() {
   useEffect(() => {
     const fetchPackageVersion = async () => {
       try {
-        // First try to fetch from NPM registry (production)
         const response = await fetch("https://registry.npmjs.org/@ozdemircibaris/react-image-editor/latest");
         if (response.ok) {
           const data = await response.json();
           setPackageVersion(data.version);
-        } else {
-          // If NPM fetch fails, check if we're in development
-          const isDevelopment = typeof window !== "undefined" && window.location.hostname === "localhost";
-          if (isDevelopment) {
-            setPackageVersion("dev");
-          } else {
-            setPackageVersion("1.0.8"); // Fallback
-          }
         }
       } catch (error) {
         console.error("Failed to fetch package version:", error);
-        // Check if we're in development
-        const isDevelopment = typeof window !== "undefined" && window.location.hostname === "localhost";
-        if (isDevelopment) {
-          setPackageVersion("dev");
-        } else {
-          setPackageVersion("1.0.8"); // Fallback
-        }
       }
     };
 
@@ -91,7 +75,7 @@ export default function Home() {
   const isDevelopment = typeof window !== "undefined" && window.location.hostname === "localhost";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white flex flex-col">
       {/* Header */}
       <header className="border-b border-gray-700 bg-gray-900/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -119,7 +103,7 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1">
         {/* Hero Section */}
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -153,10 +137,12 @@ export default function Home() {
 
         {/* Editor Section */}
         {imageUrl && (
-          <div ref={editorRef} className="max-w-4xl mx-auto">
-            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-6">
+          <div ref={editorRef} className="w-full mx-auto flex-1">
+            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 h-full">
               <h3 className="text-xl font-semibold mb-4 text-center">Image Editor</h3>
-              <ImageEditor imageUrl={imageUrl} onSave={handleSave} onCancel={handleCancel} />
+              <div className="flex-1">
+                <ImageEditor imageUrl={imageUrl} onSave={handleSave} onCancel={handleCancel} />
+              </div>
             </div>
           </div>
         )}
@@ -186,7 +172,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-700 bg-gray-900/50 backdrop-blur-sm mt-20">
+      <footer className="border-t border-gray-700 bg-gray-900/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
             <p className="text-gray-400">
