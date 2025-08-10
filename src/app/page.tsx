@@ -2,7 +2,8 @@
 
 import { ImageEditor } from "@ozdemircibaris/react-image-editor";
 import { useState, useRef, useEffect } from "react";
-import { Upload, X, Download, Image as ImageIcon, Sparkles } from "lucide-react";
+import { Upload, X, Download, Sparkles } from "lucide-react";
+import Image from "next/image";
 
 export default function Home() {
   const [imageUrl, setImageUrl] = useState("");
@@ -81,9 +82,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="p-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg">
-                <ImageIcon className="w-6 h-6 text-white" />
-              </div>
+              <Image src="/icon.png" alt="React Image Editor" width={24} height={24} />
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                   React Image Editor
@@ -106,7 +105,7 @@ export default function Home() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1">
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent leading-tight">
             Edit Images Like a Pro
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
@@ -137,13 +136,8 @@ export default function Home() {
 
         {/* Editor Section */}
         {imageUrl && (
-          <div ref={editorRef} className="w-full mx-auto flex-1">
-            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 h-full">
-              <h3 className="text-xl font-semibold mb-4 text-center">Image Editor</h3>
-              <div className="flex-1">
-                <ImageEditor imageUrl={imageUrl} onSave={handleSave} onCancel={handleCancel} />
-              </div>
-            </div>
+          <div ref={editorRef} className="w-full mx-auto">
+            <ImageEditor imageUrl={imageUrl} onSave={handleSave} onCancel={handleCancel} />
           </div>
         )}
 
