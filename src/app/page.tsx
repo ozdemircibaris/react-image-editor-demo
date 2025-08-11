@@ -5,6 +5,21 @@ import { useState, useRef, useEffect } from "react";
 import { Upload, X, Download, Sparkles } from "lucide-react";
 import Image from "next/image";
 
+// Google Analytics types
+declare global {
+  interface Window {
+    gtag: (
+      command: "event",
+      eventName: string,
+      parameters: {
+        event_category: string;
+        event_label: string;
+        value: number;
+      },
+    ) => void;
+  }
+}
+
 export default function Home() {
   const [imageUrl, setImageUrl] = useState("");
   const [savedImageUrl, setSavedImageUrl] = useState("");
@@ -51,6 +66,16 @@ export default function Home() {
     setSavedImageUrl(url);
     setShowPreview(true);
     console.log("Saved image URL:", url);
+
+    // Google Analytics event tracking
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "image_saved", {
+        event_category: "image_editor",
+        event_label: "save_button",
+        value: 1,
+      });
+      console.log("Google Analytics event sent: image_saved");
+    }
   };
 
   const handleCancel = () => {
@@ -65,6 +90,16 @@ export default function Home() {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+
+      // Google Analytics event tracking for download
+      if (typeof window !== "undefined" && window.gtag) {
+        window.gtag("event", "image_downloaded", {
+          event_category: "image_editor",
+          event_label: "download_button",
+          value: 1,
+        });
+        console.log("Google Analytics event sent: image_downloaded");
+      }
     }
   };
 
