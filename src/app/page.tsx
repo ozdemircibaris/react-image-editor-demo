@@ -65,7 +65,6 @@ export default function Home() {
     const url = URL.createObjectURL(imageBlob);
     setSavedImageUrl(url);
     setShowPreview(true);
-    console.log("Saved image URL:", url);
 
     // Google Analytics event tracking
     if (typeof window !== "undefined" && window.gtag) {
@@ -74,7 +73,6 @@ export default function Home() {
         event_label: "save_button",
         value: 1,
       });
-      console.log("Google Analytics event sent: image_saved");
     }
   };
 
@@ -98,7 +96,6 @@ export default function Home() {
           event_label: "download_button",
           value: 1,
         });
-        console.log("Google Analytics event sent: image_downloaded");
       }
     }
   };
