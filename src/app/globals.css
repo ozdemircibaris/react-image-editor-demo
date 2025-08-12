@@ -44,3 +44,31 @@ body {
 .slide-in-from-bottom-4 {
   animation: slide-in-from-bottom-4 0.3s ease-out;
 }
+
+/* Mobile Responsiveness for Image Editor */
+@media (max-width: 640px) {
+  /* Ensure ImageEditor doesn't overflow on mobile */
+  .react-image-editor {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    padding: 0.5rem !important;
+  }
+
+  /* Mobile-friendly button sizes */
+  .react-image-editor button {
+    min-height: 2.5rem;
+    min-width: 2.5rem;
+  }
+
+  /* Mobile-friendly toolbar */
+  .react-image-editor .toolbar {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Mobile-friendly canvas container */
+  .react-image-editor .canvas-container {
+    max-width: 100%;
+    overflow: hidden;
+  }
+}
